@@ -17,9 +17,9 @@ module.exports = {
     root: path.resolve('./ldl/static'),
     alias: {
       jquery: 'lib/jquery/dist/jquery.js',
-      // lodash: 'lib/lodash/lodash.js',
       underscore: 'lib/underscore/underscore.js',
-      backbone: 'lib/backbone/backbone.js'
+      backbone: 'lib/backbone/backbone.js',
+      arr2d: 'lib/arr2d.js/arr2d.js'
     }
   }
 }
