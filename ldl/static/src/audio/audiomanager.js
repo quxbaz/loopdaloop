@@ -1,7 +1,12 @@
+/*
+  audiomanager.js
+  This is a singleton class. Call init to load audio samples.
+*/
+
 var audioManager = {
 
   preload: function() {
-    this.srcs = {
+    this.samples = {
       'snare' : new Audio('/static/audio/snare.mp3'),
       'hihat' : new Audio('/static/audio/hihat.mp3'),
       'kick'  : new Audio('/static/audio/kick.mp3'),
@@ -13,8 +18,8 @@ var audioManager = {
     this.preload();
   },
 
-  clone: function(src) {
-    return this.srcs[src].cloneNode();
+  clone: function(sample) {
+    return this.samples[sample].cloneNode();
   }
 
 };
