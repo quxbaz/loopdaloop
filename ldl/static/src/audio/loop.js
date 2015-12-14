@@ -6,11 +6,11 @@ function Loop(opts) {
     Loop class. Plays a looped sequence of sounds.
   */
   var defaults = {
-    repeat: false
+    repeat: true
   };
   var opts = _.extend(defaults, opts) || defaults;
   this.blips = [];
-  this.repeat = opts.repeat || false;
+  this.repeat = opts.repeat;
 };
 
 Loop.prototype.add = function(opts) {
