@@ -7,10 +7,10 @@ var audioManager = {
 
   preload: function() {
     this.samples = {
-      'snare' : new Audio('/static/audio/snare.mp3'),
-      'hihat' : new Audio('/static/audio/hihat.mp3'),
-      'kick'  : new Audio('/static/audio/kick.mp3'),
-      'clap'  : new Audio('/static/audio/clap.mp3')
+      'snare' : new Audio('/static/samples/snare.mp3'),
+      'hihat' : new Audio('/static/samples/hihat.mp3'),
+      'kick'  : new Audio('/static/samples/kick.mp3'),
+      'clap'  : new Audio('/static/samples/clap.mp3')
     };
   },
 
