@@ -1,5 +1,7 @@
 var ajax = require('./ajax');
 
+// TODO: Split this. Take out the ajax call, this should only decode.
+
 function loadBuffer(context, url) {
   return ajax.get(url, 'arraybuffer').then(function(audioData) {
     return new Promise(function(resolve, reject) {
