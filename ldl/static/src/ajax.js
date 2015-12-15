@@ -1,5 +1,5 @@
 module.exports = {
-  GET: function GET(url, responseType) {
+  get: function(url, responseType) {
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     if (typeof responseType !=  'undefined')
