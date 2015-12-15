@@ -4,8 +4,7 @@ module.exports = {
     request.open('GET', url, true);
     if (typeof responseType !=  'undefined')
       request.responseType = responseType;
-    request.send();
-    return new Promise(function(resolve, reject) {
+    var promise = new Promise(function(resolve, reject) {
       request.onload = function() {
         resolve(request.response);
       };
@@ -13,5 +12,7 @@ module.exports = {
         console.error('GET error:', request.response);
       };
     });
+    request.send();
+    return promise;
   }
 };
