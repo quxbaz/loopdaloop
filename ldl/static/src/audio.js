@@ -1,6 +1,9 @@
 var http = require('http');
 
 function decode(context, buffer) {
+  /*
+    Async function that decodes an audio buffer.
+  */
   return new Promise(function(resolve, reject) {
     context.decodeAudioData(
       buffer,
@@ -17,6 +20,9 @@ function decode(context, buffer) {
 }
 
 function loadBuffer(context, url) {
+  /*
+    Makes a server request to an audio file and decodes it.
+  */
   return http.get(url, {responseType: 'arraybuffer'}).then(
     function(buffer) {
       return decode(context, buffer);
