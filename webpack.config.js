@@ -20,7 +20,8 @@ module.exports = {
       underscore: 'lib/underscore/underscore.js',
       backbone: 'lib/backbone/backbone.js',
       handlebars: 'lib/handlebars/handlebars.js',
-      arr2d: 'lib/arr2d.js/arr2d.js'
+      arr2d: 'lib/arr2d.js/arr2d.js',
+      arr2d: 'lib/http.js/http.js'
     }
   }
 }
