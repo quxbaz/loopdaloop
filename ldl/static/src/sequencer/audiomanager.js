@@ -26,6 +26,9 @@ fn.init = function() {
 };
 
 fn.loadSamples = function(sampleIds, url, filetype) {
+  /*
+    You should memoize this if you ever use it more than once.
+  */
   if (typeof filetype == 'undefined')
     var filetype = '.mp3';
   return Promise.all(_.map(sampleIds, function(id) {
