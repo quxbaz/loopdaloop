@@ -6,5 +6,7 @@ require('./less/style.less');
 var app = require('./src/app.js');
 
 document.addEventListener('DOMContentLoaded', function() {
-  app.init().run();
+  app.init().then(function() {
+    app.run();
+  });
 });
