@@ -19,7 +19,7 @@ var Sequencer = Backbone.View.extend({
     var opts = opts || {};
     this.cellWidth = opts.width;
     this.cellHeight = opts.height;
-    this.grid = new Array2d(8, 10);
+    this.grid = new Array2d(16, 12);
 
     // TEMP
     this.testLoop = new Loop({repeat: false});
@@ -32,7 +32,7 @@ var Sequencer = Backbone.View.extend({
     this.testLoop.add(sampleId, {
       duration: duration
     });
-    this.render(); // TEMP
+    this.render();
     return this;
   },
 
@@ -42,6 +42,7 @@ var Sequencer = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({
+      grid: this.grid,
       sampleIds: app.am.sampleIds,
       loop: this.testLoop
     }));

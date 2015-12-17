@@ -2,7 +2,7 @@
 require('./lib/normalize-css/normalize.css')
 require('./less/style.less');
 
-// Scripts
+// App scripts
 var App = require('./src/app.js');
 
 document.addEventListener('DOMContentLoaded', function() {
