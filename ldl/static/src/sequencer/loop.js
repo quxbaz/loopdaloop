@@ -1,10 +1,10 @@
-var _ = require('underscore');
-var Backbone = require('backbone');
-var Blip = require('./blip');
-
 /*
   Loop class. Plays a looped sequence of sounds.
 */
+
+var _ = require('underscore');
+var Backbone = require('backbone');
+var Blip = require('./blip');
 
 var Loop = Backbone.Model.extend({
 
