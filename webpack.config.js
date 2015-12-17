@@ -16,12 +16,12 @@ module.exports = {
   resolve: {
     root: path.resolve('./ldl/static'),
     alias: {
-      jquery: 'lib/jquery/dist/jquery.js',
-      underscore: 'lib/underscore/underscore.js',
-      backbone: 'lib/backbone/backbone.js',
-      handlebars: 'lib/handlebars/handlebars.js',
-      arr2d: 'lib/arr2d.js/arr2d.js',
-      http: 'lib/http.js/http.js'
+      'jquery'      : 'lib/jquery/dist/jquery.js',
+      'underscore'  : 'lib/underscore/underscore.js',
+      'backbone'    : 'lib/backbone/backbone.js',
+      'handlebars'  : 'lib/handlebars/handlebars.js',
+      'arr2d'       : 'lib/arr2d.js/arr2d.js',
+      'http'        : 'lib/http.js/http.js'
     }
   }
 }
