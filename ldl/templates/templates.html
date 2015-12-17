@@ -3,27 +3,21 @@
 <script type="text/x-handlebars-template" id="sequencer-template">
   <div>
     <ul>
-      {{#each samples}}
+      {{#each sampleIds}}
         <li>
-          <button class="blip-btn" type="button" data-sample="{{this}}">
+          <button class="blip-btn" type="button" data-sample-id="{{this}}">
             {{this}}
           </button>
         </li>
       {{/each}}
     </ul>
-    <div class="loop-controls">
-      <button class="add-loop" type="button">Add loop</button>
+    <div>
+      {{#each loop.blips}}
+        <span>{{sampleId}} //</span>
+      {{/each}}
     </div>
-    <ul class="loops"></ul>
     <button class="control-play" type="button">Play</button>
   </div>
-</script>
-
-<script type="text/x-handlebars-template" id="loop-template">
-  Loop
-  {{#each blips}}
-    <span>{{sample}}</span>
-  {{/each}}
 </script>
 
 {% endraw %}
