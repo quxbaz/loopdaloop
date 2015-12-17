@@ -24,7 +24,6 @@ var Loop = Backbone.Model.extend({
   },
 
   play: function() {
-    // Plays the sequence.
     var durations = _.pluck(this.blips, 'duration');
     var totalDuration = _.reduce(durations, function(a, b) {return a + b;});
     var durationMap = _.initial(durations);
@@ -45,10 +44,6 @@ var Loop = Backbone.Model.extend({
     }
     if (this.repeat)
       setTimeout(this.play.bind(this), totalDuration);
-  },
-
-  schedulePlay: function(clock) {
-    // Plays the sound if it's the right time.
   }
 
 });
