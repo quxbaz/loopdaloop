@@ -1,24 +1,29 @@
 var _ = require('underscore');
-var Sequencer = require('./audio/sequencer');
-var audioManager = require('./audio/audiomanager');
-var Loop = require('./audio/loop');
+var Sequencer = require('./sequencer/sequencer');
+var AudioManager = require('./sequencer/audiomanager');
 
-module.exports = {
-  init: function() {
-    // TODO: Return a promise that completes when all resources have
-    // loaded.
-    audioManager.init();
-    return this;
-  },
-  run: function() {
-    var seq = new Sequencer();
-    var loop = new Loop({repeat: false});
-    var duration = 300;
-    loop.add({src: 'kick', duration: duration});
-    loop.add({src: 'snare', duration: duration});
-    loop.add({src: 'hihat', duration: duration});
-    loop.add({src: 'snare', duration: duration});
-    _.delay(loop.play.bind(loop), 500);
-    return this;
-  }
+function App() {
+  this.am = new AudioManager(new AudioContext());
+  this.sequencer = new Sequencer();
+}
+
+var fn = App.prototype;
+
+fn.load = function() {
+  /*
+    Loads resources; async.
+  */
+  return this.am.init();
 };
+
+fn.run = function() {
+  this.render().sequencer.$el.appendTo('#content');
+  return this;
+};
+
+fn.render = function() {
+  this.sequencer.render();
+  return this;
+};
+
+module.exports = App;

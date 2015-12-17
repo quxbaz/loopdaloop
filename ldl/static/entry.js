@@ -3,10 +3,11 @@ require('./lib/normalize-css/normalize.css')
 require('./less/style.less');
 
 // Scripts
-var app = require('./src/app.js');
+var App = require('./src/app.js');
 
 document.addEventListener('DOMContentLoaded', function() {
-  app.init().then(function() {
+  var app = new App();
+  app.load().then(function() {
     app.run();
   });
 });
