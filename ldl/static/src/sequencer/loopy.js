@@ -1,5 +1,5 @@
 /*
-  Loop class. Plays a looped sequence of sounds.
+  Loop class and view. Plays a looped sequence of sounds.
 */
 
 var _ = require('underscore');
@@ -48,4 +48,9 @@ var Loop = Backbone.Model.extend({
 
 });
 
-module.exports = Loop;
+var LoopView = Backbone.View.extend({});
+
+module.exports = {
+  Loop: Loop,
+  LoopView: LoopView,
+}
