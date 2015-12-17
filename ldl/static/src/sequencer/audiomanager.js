@@ -1,6 +1,7 @@
 /*
   audiomanager.js
-  This is a singleton class. Call init to load audio samples.
+  This is intended to be used as a singleton class. Call init to load
+  audio samples.
 */
 
 var _ = require('underscore');
