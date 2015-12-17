@@ -1,12 +1,12 @@
 var _ = require('underscore');
 
-function Blip(audioManager, sample, opts) {
+function Blip(sampleId, opts) {
   /*
     A single sound.
   */
-  this.am = audioManager;
+  this.am = app.am;
   this.context = this.am.context;
-  this.sample = sample;
+  this.sampleId = sampleId;
   var defaults = {
     duration: 200,
     offset: 0,
@@ -17,8 +17,9 @@ function Blip(audioManager, sample, opts) {
 
 Blip.prototype.play = function() {
   var source = this.context.createBufferSource();
-  source.buffer = this.am.getSampleBuffer(this.sample);
-  if (this.gain != 1) {
+  source.buffer = this.am.getSampleBuffer(this.sampleId);
+  var defaultGainValue = this.context.createGain().gain.value;
+  if (this.gain != defaultGainValue) {
     var gainNode = this.context.createGain();
     source.connect(gainNode);
     gainNode.connect(this.context.destination);
