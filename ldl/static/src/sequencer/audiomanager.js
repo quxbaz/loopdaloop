@@ -3,25 +3,41 @@
   This is a singleton class. Call init to load audio samples.
 */
 
-var audioManager = {
+var _ = require('underscore');
+var webaudio = require('../webaudio');
 
-  preload: function() {
-    this.samples = {
-      'snare' : new Audio('/static/samples/snare.mp3'),
-      'hihat' : new Audio('/static/samples/hihat.mp3'),
-      'kick'  : new Audio('/static/samples/kick.mp3'),
-      'clap'  : new Audio('/static/samples/clap.mp3')
-    };
-  },
+var sampleIds = ['snare', 'hihat', 'kick', 'clap'];
 
-  init: function() {
-    this.preload();
-  },
+function AudioManager(context) {
+  if (typeof context == 'undefined')
+    throw Error('AudioManager must be instantiated with an AudioContext object.')
+  this.context = context;
+  this.samples = {};
+}
 
-  clone: function(sample) {
-    return this.samples[sample].cloneNode();
-  }
+var fn = AudioManager.prototype;
 
+fn.init = function() {
+  /*
+    Initializes the object and returns a promise when everything is loaded.
+  */
+  return this.loadSamples(sampleIds, '/static/samples/');
 };
 
-module.exports = audioManager;
+fn.loadSamples = function(sampleIds, url, filetype) {
+  if (typeof filetype == 'undefined')
+    var filetype = '.mp3';
+  return Promise.all(_.map(sampleIds, function(id) {
+    return webaudio.loadBuffer(this.context, url + id + filetype);
+  }, this)).then(function(buffers) {
+    for (var i=0; i < buffers.length; i++)
+      this.samples[sampleIds[i]] = buffers[i];
+    return this.samples;
+  }.bind(this));
+};
+
+fn.getSampleBuffer = function(sample) {
+  return this.samples[sample];
+};
+
+module.exports = AudioManager;
