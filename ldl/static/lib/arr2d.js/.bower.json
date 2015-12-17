@@ -15,11 +15,11 @@
     "test",
     "tests"
   ],
-  "_release": "8c3f0b9d1f",
+  "_release": "86d0b15007",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "8c3f0b9d1f0e670c90953d19ff3e5e7b44f7abd2"
+    "commit": "86d0b150075f6e3611ee79a9ac60d80c28e5dee2"
   },
   "_source": "https://github.com/quxbaz/arr2d.js.git",
   "_target": "*",
