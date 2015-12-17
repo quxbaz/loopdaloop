@@ -62,7 +62,7 @@ var LoopView = Backbone.View.extend({
     this.$el.trigger('select-loop', this.loop);
   },
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.loop));
     return this;
   }
 });
