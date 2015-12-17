@@ -17,17 +17,25 @@
       {{/each}}
     </div>
     <button class="control-play" type="button">Play</button>
-    <table class="grid">
+  </div>
+  <table class="grid">
+    <tbody>
       {{#each grid.rows}}
         <tr>
           {{#each this}}
-            <td>
-              <!--  -->
-            </td>
+            <td></td>
           {{/each}}
         </tr>
       {{/each}}
-    </table>
+    </tbody>
+  </table>
+</script>
+
+<script type="text/x-handlebars-template" id="loop-template">
+  <div class="blips">
+    {{#each blips}}
+      <span class="blip">{{sampleId}}</span>
+    {{/each}}
   </div>
 </script>
 
