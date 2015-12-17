@@ -7,12 +7,13 @@
 var _ = require('underscore');
 var webaudio = require('../webaudio');
 
-var sampleIds = ['snare', 'hihat', 'kick', 'clap'];
+var SAMPLE_IDS = ['snare', 'hihat', 'kick', 'clap'];
 
 function AudioManager(context) {
   if (typeof context == 'undefined')
     throw Error('AudioManager must be instantiated with an AudioContext object.')
   this.context = context;
+  this.sampleIds = SAMPLE_IDS;
   this.samples = {};
 }
 
@@ -22,7 +23,7 @@ fn.init = function() {
   /*
     Initializes the object and returns a promise when everything is loaded.
   */
-  return this.loadSamples(sampleIds, '/static/samples/');
+  return this.loadSamples(this.sampleIds, '/static/samples/');
 };
 
 fn.loadSamples = function(sampleIds, url, filetype) {
@@ -40,8 +41,8 @@ fn.loadSamples = function(sampleIds, url, filetype) {
   }.bind(this));
 };
 
-fn.getSampleBuffer = function(sample) {
-  return this.samples[sample];
+fn.getSampleBuffer = function(sampleId) {
+  return this.samples[sampleId];
 };
 
 module.exports = AudioManager;
