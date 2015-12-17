@@ -1,23 +1,24 @@
 var _ = require('underscore');
 
-function Blip(context, opts) {
+function Blip(audioMan, opts) {
   /*
     A single sound.
   */
-  this.context = context;
+  this.audioMan = audioMan;
+  this.context = this.audioMan.context;
   var defaults = {
     sample: 'hihat',
     duration: 200,
     volume: 1
   };
   _.extend(this, defaults, opts);
-  this.audioNode.volume = this.volume;
+  // this.audioNode.volume = this.volume;
 }
 
 Blip.prototype.play = function() {
-  var source = context.createBufferSource();
-  source.buffer = this.context.getSampleBuffer(this.sample);
-  source.connect(context.destination);
+  var source = this.context.createBufferSource();
+  source.buffer = this.audioMan.getSampleBuffer(this.sample);
+  source.connect(this.context.destination);
   source.start();
   return this;
 };
