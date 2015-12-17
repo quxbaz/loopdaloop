@@ -30,6 +30,16 @@ module.exports = (function() {
 
   var fn = Array2d.prototype;
 
+  Object.defineProperty(fn, 'rows', {
+    get: function() {
+      var rows = [];
+      var len = this.len();
+      for (var i=0; i < len; i += this.w)
+        rows.push(this.arr.slice(i, i + this.w));
+      return rows;
+    }
+  });
+
   var bound = function(f) {
     /*
       Decorates a method so that its position argument is required to be
@@ -41,7 +51,7 @@ module.exports = (function() {
       if (bounded)
         return f.apply(this, arguments);
       else
-        throw 'Position exceeds array bounds.';
+        throw Error('Position exceeds array bounds.');
     };
   };
 
@@ -154,7 +164,7 @@ module.exports = (function() {
       if (this.isEmptyAt(i))
         return this.set(i, val);
     }
-    throw 'Array is completely filled.';
+    throw Error('Array is completely filled.');
   };
 
   fn.iter = function(fn, context) {
