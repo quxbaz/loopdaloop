@@ -8,7 +8,7 @@ var Blip = require('./blip');
 
 var Loop = Backbone.Model.extend({
 
-  initialize: function() {
+  initialize: function(opts) {
     var defaults = {
       repeat: true
     };
@@ -17,8 +17,8 @@ var Loop = Backbone.Model.extend({
     this.repeat = opts.repeat;
   },
 
-  add: function(opts) {
-    var blip = new Blip(opts);
+  add: function(sampleId, opts) {
+    var blip = new Blip(sampleId, opts);
     this.blips.push(blip);
     return this;
   },
