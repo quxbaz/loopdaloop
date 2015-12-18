@@ -24,6 +24,7 @@ fn.add = function(sampleId, opts) {
   return this;
 };
 
+// TODO: Tidy up this function
 fn.play = function() {
   var durations = _.pluck(this.blips, 'duration');
   var totalDuration = _.reduce(durations, function(a, b) {return a + b;});
