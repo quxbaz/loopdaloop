@@ -20,12 +20,10 @@
   </div>
 </script>
 
-<script type="text/x-handlebars-template" id="loop-template">
-  <div class="blips">
-    {{#each blips}}
-      <span class="blip">{{sampleId}}</span>
-    {{/each}}
-  </div>
+<script type="text/x-handlebars-template" id="channel-template">
+  {{#each blips}}
+    <span class="blip">{{sampleId}}</span>
+  {{/each}}
 </script>
 
 {% endraw %}
