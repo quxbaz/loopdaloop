@@ -5,6 +5,7 @@ require('./less/style.less');
 // Library scripts
 var Backbone = require('backbone');
 var Handlebars = require('handlebars');
+require('./handlebars.helpers.js').setup();
 var render = require('render');
 var bind = require('bind');
 
