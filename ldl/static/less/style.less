@@ -2,30 +2,18 @@
 @font-size-small: 12px;
 @font-color: #383838;
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-.outline {
-  outline: 1px solid #f00;
-}
-
-.border(@color: #f00) {
-  border: 1px solid @color;
-}
+*, *:before, *:after {box-sizing: border-box;}
+.outline(@color:#f00) {outline: 1px solid @color;}
+.border(@color: #f00) {border: 1px solid @color;}
+.bg(@color: #f00) {background: @color;}
+.hide {display: none;}
+.show(@display: block) {display: @display;}
 
 .column() {
   display: inline-block;
   vertical-align: top;
 }
 
-.hide {
-  display: none;
-}
-
-.show(@display: block) {
-  display: @display;
-}
 
 .small-caps {
   font-size: @font-size-small;
@@ -43,40 +31,62 @@ body {
 }
 
 #content {
-  margin-top: 80px;
-  margin-left: 80px;
+  .outline(#0f0);
+  width: 960px;
+  margin: 80px auto 0 auto;
 }
 
-// .grid {
-//   @width: 40px;
-//   @height: 24px;
-//   tr:nth-child(odd) {
-//     background: #fff1f1;
-//   }
-//   td {
-//     width: @width;
-//     height: @height;
-//     max-width: @width;
-//     max-height: @height;
-//     .border(#ff9a9a);
-//     text-align: center;
-//     cursor: pointer;
-//   }
-//   .loop {
-//     position: relative;
-//     width: 100%;
-//     height: 100%;
-//     background: pink;
-//   }
-//   .blips {
-//     position: absolute;
-//     white-space: nowrap;
-//     font-size: 0;
-//   }
-//   .blip {
-//     display: inline-block;
-//     width: @width;
-//     height: @height;
-//     font-size: 1rem;
-//   }
-// }
+@channelLength: 240px;
+@channelMargin: 20px;
+@cellLength: @channelLength / 4;
+
+.flow-content() {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.center-content() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.channels {
+  .flow-content;
+  width: (@channelLength * 3) + (@channelMargin * 2);
+  margin: 0 auto;
+}
+
+.channel {
+  width: @channelLength;
+  height: @channelLength;
+}
+
+.checker(@color) {
+  &:nth-child(odd) .cell:nth-child(even),
+  &:nth-child(even) .cell:nth-child(odd) {
+    background: @color;
+  }
+}
+
+.cells {}
+
+.cell-row {
+  .flow-content;
+  .checker(#f8f8f8);
+  &:not(:first-child) .cell {
+    border-top: none;
+  }
+}
+
+.cell {
+  position: relative;
+  width: @cellLength;
+  height: @cellLength;
+  .center-content;
+  .border;
+  &:not(:first-child) {
+    border-left: none;
+  }
+}

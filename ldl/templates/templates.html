@@ -2,7 +2,7 @@
 
 <script type="text/x-handlebars-template" id="sequencer-template">
   Sequence template
-  <div>
+  <div class="channels">
     {{#each channels}}
       {{render this}}
     {{/each}}
@@ -10,7 +10,17 @@
 </script>
 
 <script type="text/x-handlebars-template" id="channel-template">
-  This is a channel
+  <div class="cells">
+    {{#times 4}}
+      <div class="cell-row">
+        {{#times 4}}
+          <div class="cell">
+            {{@index}}
+          </div>
+        {{/times}}
+      </div>
+    {{/times}}
+  </div>
 </script>
 
 {% endraw %}
