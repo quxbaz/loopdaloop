@@ -10,12 +10,17 @@ function Blip(sampleId, opts) {
   var defaults = {
     duration: 200,
     offset: 0,
-    gain: 1
+    gain: 1,
+    mute: false
   };
   _.extend(this, defaults, opts);
+  if (this.sampleId == '')
+    this.mute = true;
 }
 
 Blip.prototype.play = function() {
+  if (this.mute)
+    return this;
   var source = this.context.createBufferSource();
   source.buffer = this.am.getSampleBuffer(this.sampleId);
   var defaultGainValue = this.context.createGain().gain.value;
