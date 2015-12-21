@@ -1,13 +1,13 @@
-var $ = require('jquery');
-var _ = require('underscore');
 var Backbone = require('backbone');
-var hb = require('handlebars');
+var util = require('util');
 var loopy = require('./loopy');
 
 var Channel = Backbone.View.extend({
 
   className: 'channel',
-  template: hb.compile($('#channel-template').html),
+  template: util.makeTemplate('channel'),
+
+  events: {},
 
   initialize: function() {
     this.loop = new loopy.Loop({muted: true, repeat: false});
@@ -15,11 +15,6 @@ var Channel = Backbone.View.extend({
 
   play: function() {
     this.loop.play();
-  },
-
-  render: function() {
-    this.$el.html(this.template(this.loop));
-    return this;
   }
 
 });

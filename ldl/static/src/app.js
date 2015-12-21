@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var Sequencer = require('./sequencer/sequencer');
 var AudioManager = require('./sequencer/audiomanager');
 
@@ -18,12 +17,7 @@ fn.load = function() {
 };
 
 fn.run = function() {
-  this.render().sequencer.$el.appendTo('#content');
-  return this;
-};
-
-fn.render = function() {
-  this.sequencer.render();
+  this.sequencer.render().$el.appendTo('#content');
   return this;
 };
 

@@ -3,9 +3,6 @@
 */
 
 var _ = require('underscore');
-var $ = require('jquery');
-var Backbone = require('backbone');
-var hb = require('handlebars');
 var Blip = require('./blip');
 
 function Loop(opts) {
@@ -48,25 +45,6 @@ fn.play = function() {
     setTimeout(this.play.bind(this), totalDuration);
 };
 
-// var LoopView = Backbone.View.extend({
-//   className: 'loop',
-//   template: hb.compile($('#loop-template').html()),
-//   events: {
-//     'click': 'onClick'
-//   },
-//   initialize: function(loop) {
-//     this.loop = loop;
-//   },
-//   onClick: function(event) {
-//     this.$el.trigger('select-loop', this.loop);
-//   },
-//   render: function() {
-//     this.$el.html(this.template(this.loop));
-//     return this;
-//   }
-// });
-
 module.exports = {
   Loop: Loop
-  // LoopView: LoopView,
 }

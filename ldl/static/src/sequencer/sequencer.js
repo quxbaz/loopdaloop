@@ -1,13 +1,14 @@
 var $ = require('jquery');
-var _ = require('underscore');
 var Backbone = require('backbone');
-var hb = require('handlebars');
-var loopy = require('./loopy');
+var util = require('util');
+var Channel = require('./channel');
+
+var INITIAL_CHANNELS = 4;       // Starting number of channels to display.
 
 var Sequencer = Backbone.View.extend({
 
   className: 'sequencer',
-  template: hb.compile($('#sequencer-template').html()),
+  template: util.makeTemplate('sequencer'),
 
   events: {
     'click .control-play' : 'play',
@@ -15,6 +16,13 @@ var Sequencer = Backbone.View.extend({
   },
 
   initialize: function() {
+    this.channels = [];
+    this.addChannels(INITIAL_CHANNELS);
+  },
+
+  addChannels: function(n) {
+    for (var i=0; i < n; i++)
+      this.channels.push(new Channel());
   },
 
   play: function() {
@@ -29,11 +37,11 @@ var Sequencer = Backbone.View.extend({
     return this;
   },
 
-  render: function() {
-    this.$el.html(this.template({
-      sampleIds: app.am.sampleIds
-    }));
-    return this;
+  templateData: function() {
+    return {
+      sampleIds: app.am.sampleIds,
+      loops: this.loops
+    };
   }
 
 });
