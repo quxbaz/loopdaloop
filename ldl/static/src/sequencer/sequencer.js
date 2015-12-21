@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 var util = require('util');
 var Channel = require('./channel');
 
-var INITIAL_CHANNELS = 4;       // Starting number of channels to display.
+var INITIAL_CHANNELS = 3;  // Starting number of channels rendered
 
 var Sequencer = Backbone.View.extend({
 
