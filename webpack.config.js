@@ -21,7 +21,9 @@ module.exports = {
       'backbone'    : 'lib/backbone/backbone.js',
       'handlebars'  : 'lib/handlebars/handlebars.js',
       // 'arr2d'       : 'lib/arr2d.js/arr2d.js',
-      'http'        : 'lib/http.js/http.js'
+      'http'        : 'lib/http.js/http.js',
+      'render'      : 'lib/render.js/render.js',
+      'bind'        : 'lib/bind.js/bind.js'
     }
   }
 }

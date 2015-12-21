@@ -1,0 +1,29 @@
+{
+  "name": "render.js",
+  "main": "render.js",
+  "authors": [
+    "David Yeung <quxbaz@gmail.com>"
+  ],
+  "description": "Handlebars tool for rendering sub-templates.",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://github.com/quxbaz/render.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "ffa7f9b79e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ffa7f9b79ecfa01358adeab70fc79eaf754c1ae4"
+  },
+  "_source": "https://github.com/quxbaz/render.js.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/quxbaz/render.js.git",
+  "_direct": true
+}

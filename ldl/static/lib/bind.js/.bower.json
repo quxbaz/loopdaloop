@@ -1,0 +1,29 @@
+{
+  "name": "bind.js",
+  "main": "bind.js",
+  "authors": [
+    "David Yeung <quxbaz@gmail.com>"
+  ],
+  "description": "One way binding library that works with Handlebars.",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://github.com/quxbaz/bind.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "2b9cbd3d19",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2b9cbd3d19211df1368a06bcabc5e3ec74642cfd"
+  },
+  "_source": "https://github.com/quxbaz/bind.js.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/quxbaz/bind.js.git",
+  "_direct": true
+}

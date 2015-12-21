@@ -1,0 +1,19 @@
+{
+  "name": "bind.js",
+  "main": "bind.js",
+  "authors": [
+    "David Yeung <quxbaz@gmail.com>"
+  ],
+  "description": "One way binding library that works with Handlebars.",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://github.com/quxbaz/bind.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
