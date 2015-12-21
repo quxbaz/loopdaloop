@@ -15,6 +15,11 @@ function Loop(opts) {
 
 var fn = Loop.prototype;
 
+fn.add = function(blip) {
+  this.blips.push(blip);
+  return this;
+};
+
 // <TODO> Review and tidy up this function
 fn.play = function() {
   var durations = _.pluck(this.blips, 'duration');
