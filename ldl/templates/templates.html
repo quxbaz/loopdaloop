@@ -1,27 +1,16 @@
 {% raw %}
 
 <script type="text/x-handlebars-template" id="sequencer-template">
-
+  Sequence template
   <div>
-    <div>
-      {{#each sampleIds}}
-        <button class="blip-btn" type="button" data-sample-id="{{this}}">
-          {{this}}
-        </button>
-      {{/each}}
-    </div>
-    <div>
-      {{#each loop.blips}}
-        <span>{{sampleId}} //</span>
-      {{/each}}
-    </div>
-    <button class="control-play" type="button">Play</button>
+    {{#each channels}}
+      {{render this}}
+    {{/each}}
   </div>
-
 </script>
 
 <script type="text/x-handlebars-template" id="channel-template">
-  This is channel {{bind "testChannelName"}}
+  This is a channel
 </script>
 
 {% endraw %}

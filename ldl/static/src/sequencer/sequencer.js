@@ -39,8 +39,7 @@ var Sequencer = Backbone.View.extend({
 
   templateData: function() {
     return {
-      sampleIds: app.am.sampleIds,
-      loops: this.loops
+      channels: this.channels
     };
   }
 
