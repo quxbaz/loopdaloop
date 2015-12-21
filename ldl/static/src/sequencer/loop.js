@@ -15,13 +15,7 @@ function Loop(opts) {
 
 var fn = Loop.prototype;
 
-fn.add = function(sampleId, opts) {
-  var blip = new Blip(sampleId, opts);
-  this.blips.push(blip);
-  return this;
-};
-
-// TODO: Tidy up this function
+// <TODO> Review and tidy up this function
 fn.play = function() {
   var durations = _.pluck(this.blips, 'duration');
   var totalDuration = _.reduce(durations, function(a, b) {return a + b;});
