@@ -42,6 +42,8 @@ fn.loadSamples = function(sampleIds, url, filetype) {
 };
 
 fn.getSampleBuffer = function(sampleId) {
+  if (SAMPLE_IDS.indexOf(sampleId) == -1)
+    throw new Error('Sample "' + sampleId + '" is not a valid sample.');
   return this.samples[sampleId];
 };
 
