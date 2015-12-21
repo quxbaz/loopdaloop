@@ -16,14 +16,13 @@
     "test",
     "tests"
   ],
-  "_release": "ffa7f9b79e",
+  "_release": "8cfe7654e4",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "ffa7f9b79ecfa01358adeab70fc79eaf754c1ae4"
+    "commit": "8cfe7654e4f7759ad7fff7049bab14cf1e8a57ed"
   },
   "_source": "https://github.com/quxbaz/render.js.git",
   "_target": "*",
-  "_originalSource": "https://github.com/quxbaz/render.js.git",
-  "_direct": true
+  "_originalSource": "https://github.com/quxbaz/render.js.git"
 }
