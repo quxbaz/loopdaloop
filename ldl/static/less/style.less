@@ -36,9 +36,10 @@ body {
   margin: 80px auto 0 auto;
 }
 
-@channelLength: 240px;
+@channelLength: 200px;
 @channelMargin: 20px;
 @cellLength: @channelLength / 4;
+@channelContainerWidth: (@channelLength * 3) + (@channelMargin * 2);
 
 .flow-content() {
   display: flex;
@@ -54,7 +55,7 @@ body {
 
 .channels {
   .flow-content;
-  width: (@channelLength * 3) + (@channelMargin * 2);
+  width: @channelContainerWidth;
   margin: 0 auto;
 }
 
