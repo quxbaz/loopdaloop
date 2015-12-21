@@ -1,6 +1,6 @@
 var Backbone = require('backbone');
 var util = require('util');
-var loopy = require('./loopy');
+var Loop = require('./loop');
 
 var Channel = Backbone.View.extend({
 
@@ -10,7 +10,7 @@ var Channel = Backbone.View.extend({
   events: {},
 
   initialize: function() {
-    this.loop = new loopy.Loop({muted: true, repeat: false});
+    this.loop = new Loop({muted: true, repeat: false});
   },
 
   play: function() {

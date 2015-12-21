@@ -7,7 +7,7 @@ var Blip = require('./blip');
 
 function Loop(opts) {
   var defaults = {
-    repeat: true
+    repeat: false
   };
   _.extend(this, defaults, opts);
   this.blips = [];
@@ -45,6 +45,4 @@ fn.play = function() {
     setTimeout(this.play.bind(this), totalDuration);
 };
 
-module.exports = {
-  Loop: Loop
-}
+module.exports = Loop;
