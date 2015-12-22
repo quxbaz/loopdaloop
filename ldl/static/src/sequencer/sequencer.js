@@ -10,7 +10,9 @@ var Sequencer = Backbone.View.extend({
   template: util.makeTemplate('sequencer'),
 
   events: {
-    'click .add-channel': 'actionAddChannel'
+    'click .pause'       : 'actionPausePlaying',
+    'click .resume'      : 'actionResumePlaying',
+    'click .add-channel' : 'actionAddChannel'
   },
 
   initialize: function() {
@@ -18,9 +20,8 @@ var Sequencer = Backbone.View.extend({
     this.addChannels(1);
     this.currentBeat = 0;
     this.beatDuration = 200;
-
     this.testInitChannels();
-    // _.delay(this.play.bind(this), 100);
+    _.delay(this.play.bind(this), 100);
   },
 
   testInitChannels: function() {
@@ -58,35 +59,36 @@ var Sequencer = Backbone.View.extend({
       this.channels.push(new Channel());
   },
 
+  actionPausePlaying: function(event) {
+    event.preventDefault();
+    clearInterval(this.testPlayId);
+    $(event.currentTarget).addClass('hide');
+    $('.resume').removeClass('hide');
+  },
+
+  actionResumePlaying: function(event) {
+    event.preventDefault();
+    this.play();
+    $(event.currentTarget).addClass('hide');
+    $('.pause').removeClass('hide');
+  },
+
   actionAddChannel: function(event) {
     this.addChannels(1);
     this.render();
   },
 
   play: function() {
-
     var that = this;
-    setInterval(function() {
+    this.testPlayId = setInterval(function() {
+      var beat = that.currentBeat;
       $('.cell').removeClass('playing');
       $('.cells').each(function(i) {
-
-        // <todo> Play random blips :D
-        // that.currentBeat = Math.floor(Math.random() * 16);
-
-        if (that.currentBeat == 0) {
-          that.channels[i].play();
-        }
-
-        $('.cell', this)[that.currentBeat].className += ' playing';
-
+        that.channels[i].loop.playBlip(beat);
+        $('.cell', this).eq(beat).addClass('playing');
       });
-      that.currentBeat = (that.currentBeat + 1) % 16;
+      that.currentBeat = (beat + 1) % 16;
     }, this.beatDuration);
-
-    // for (var i=0; i < this.channels.length; i++) {
-    //   this.channels[i].play();
-    // }
-
   },
 
   templateData: function() {
