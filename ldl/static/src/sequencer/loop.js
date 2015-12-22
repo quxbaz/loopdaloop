@@ -21,13 +21,10 @@ fn.add = function(blip) {
 };
 
 fn.play = function() {
-
   if (!this.blips.length)
     return;
-
   var blips = this.blips;
   var repeat = this.repeat;
-
   (function play(blip, i) {
     if (i < blips.length)
       blip.play().then(function() {
@@ -36,10 +33,11 @@ fn.play = function() {
     else if (repeat)
       play(blips[0], 0);
   })(blips[0], 0);
-
 };
 
-// <TODO>
-fn.playBlip = function(i) {};
+fn.playBlip = function(i) {
+  if (i < this.blips.length)
+    this.blips[i].play();
+};
 
 module.exports = Loop;
