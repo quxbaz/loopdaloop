@@ -36,10 +36,10 @@ body {
   margin: 80px auto 0 auto;
 }
 
-@channelLength: 200px;
-@channelMargin: 20px;
-@cellLength: @channelLength / 4;
-@channelContainerWidth: (@channelLength * 3) + (@channelMargin * 2);
+@channelLength: 220px;
+@innerChannelLength: 180px;
+@cellLength: @innerChannelLength / 4;
+@channelContainerWidth: (@channelLength * 3);
 
 .flow-content() {
   display: flex;
@@ -60,31 +60,22 @@ body {
 }
 
 .channel {
+  .center-content;
   width: @channelLength;
   height: @channelLength;
-  margin-bottom: @channelMargin;
-}
-
-.add-channel {
-  .outline;
-  .channel;
-  cursor: pointer;
-  .center-content;
-}
-
-.channel-placeholder {
-  .channel;
-}
-
-.checker(@color) {
-  &:nth-child(odd) .cell:nth-child(even),
-  &:nth-child(even) .cell:nth-child(odd) {
-    background: @color;
+  border: 1px dashed #f00;
+  &:not(:nth-child(3n + 1)) {
+    border-left: none;
+  }
+  &:nth-child(n + 4) {
+    border-top: none;
   }
 }
 
 .cells {
   .flow-content;
+  width: @innerChannelLength;
+  height: @innerChannelLength;
 }
 
 .cell {
@@ -102,4 +93,19 @@ body {
   &.playing {
     .bg(#fdd) !important;
   }
+}
+
+.add-channel {
+  .channel;
+  > div:first-child {
+    .center-content;
+    width: @innerChannelLength;
+    height: @innerChannelLength;
+    cursor: pointer;
+    .border;
+  }
+}
+
+.channels .spacer {
+  .channel;
 }
