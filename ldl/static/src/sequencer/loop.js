@@ -20,28 +20,26 @@ fn.add = function(blip) {
   return this;
 };
 
-// <TODO> Review and tidy up this function
 fn.play = function() {
-  var durations = _.pluck(this.blips, 'duration');
-  var totalDuration = _.reduce(durations, function(a, b) {return a + b;});
-  var durationMap = _.initial(durations);
-  if (durationMap.length > 1) {
-    for (var i=1; i < durationMap.length; i++)
-      durationMap[i] += durationMap[i-1];
-  }
-  for (var i=0; i < this.blips.length; i++) {
-    if (i == 0)
-      this.blips[i].play();
-    else {
-      (function(blip) {
-        setTimeout(function() {
-          blip.play();
-        }, durationMap[i-1]);
-      })(this.blips[i]);
-    }
-  }
-  if (this.repeat)
-    setTimeout(this.play.bind(this), totalDuration);
+
+  if (!this.blips.length)
+    return;
+
+  var blips = this.blips;
+  var repeat = this.repeat;
+
+  (function play(blip, i) {
+    if (i < blips.length)
+      blip.play().then(function() {
+        play(blips[i], i + 1);
+      });
+    else if (repeat)
+      play(blips[0], 0);
+  })(blips[0], 0);
+
 };
+
+// <TODO>
+fn.playBlip = function(i) {};
 
 module.exports = Loop;

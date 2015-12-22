@@ -21,6 +21,8 @@ function Blip(sampleId, opts) {
 Blip.prototype.play = function() {
   if (this.mute)
     return this;
+
+  var that = this;
   var source = this.context.createBufferSource();
   source.buffer = this.am.getSampleBuffer(this.sampleId);
   var defaultGainValue = this.context.createGain().gain.value;
@@ -32,7 +34,13 @@ Blip.prototype.play = function() {
   }
   source.connect(this.context.destination);
   source.start(this.context.currentTime + this.offset / 1000);
-  return this;
+
+  // Returns a promise that resolves when the blip is done playing.
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      resolve(this);
+    }, that.duration);
+  });
 };
 
 module.exports = Blip;
