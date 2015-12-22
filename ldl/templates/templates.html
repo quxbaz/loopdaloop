@@ -1,7 +1,6 @@
 {% raw %}
 
 <script type="text/x-handlebars-template" id="sequencer-template">
-  Sequence template
   <div class="channels">
     {{#each channels}}
       {{render this}}
@@ -11,14 +10,8 @@
 
 <script type="text/x-handlebars-template" id="channel-template">
   <div class="cells">
-    {{#times 4}}
-      <div class="cell-row">
-        {{#times 4}}
-          <div class="cell">
-            {{@index}}
-          </div>
-        {{/times}}
-      </div>
+    {{#times 16}}
+      <div class="cell"></div>
     {{/times}}
   </div>
 </script>

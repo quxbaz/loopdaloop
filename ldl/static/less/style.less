@@ -62,6 +62,7 @@ body {
 .channel {
   width: @channelLength;
   height: @channelLength;
+  margin-bottom: @channelMargin;
 }
 
 .checker(@color) {
@@ -71,14 +72,8 @@ body {
   }
 }
 
-.cells {}
-
-.cell-row {
+.cells {
   .flow-content;
-  .checker(#f8f8f8);
-  &:not(:first-child) .cell {
-    border-top: none;
-  }
 }
 
 .cell {
@@ -87,7 +82,13 @@ body {
   height: @cellLength;
   .center-content;
   .border;
-  &:not(:first-child) {
+  &:not(:nth-child(4n + 1)) {
     border-left: none;
+  }
+  &:nth-child(n + 5) {
+    border-top: none;
+  }
+  &.playing {
+    .bg(#fdd) !important;
   }
 }
