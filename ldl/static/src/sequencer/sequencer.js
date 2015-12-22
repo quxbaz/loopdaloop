@@ -10,8 +10,8 @@ var Sequencer = Backbone.View.extend({
   template: util.makeTemplate('sequencer'),
 
   events: {
-    'click .pause'       : 'actionPausePlaying',
-    'click .resume'      : 'actionResumePlaying',
+    'click .pause'       : 'actionPause',
+    'click .play'        : 'actionPlay',
     'click .add-channel' : 'actionAddChannel'
   },
 
@@ -21,7 +21,7 @@ var Sequencer = Backbone.View.extend({
     this.currentBeat = 0;
     this.beatDuration = 200;
     this.testInitChannels();
-    _.delay(this.play.bind(this), 100);
+    // _.delay(this.play.bind(this), 100);
   },
 
   testInitChannels: function() {
@@ -59,14 +59,14 @@ var Sequencer = Backbone.View.extend({
       this.channels.push(new Channel());
   },
 
-  actionPausePlaying: function(event) {
+  actionPause: function(event) {
     event.preventDefault();
     clearInterval(this.testPlayId);
     $(event.currentTarget).addClass('hide');
-    $('.resume').removeClass('hide');
+    $('.play').removeClass('hide');
   },
 
-  actionResumePlaying: function(event) {
+  actionPlay: function(event) {
     event.preventDefault();
     this.play();
     $(event.currentTarget).addClass('hide');
