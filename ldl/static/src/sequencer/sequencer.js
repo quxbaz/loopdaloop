@@ -17,7 +17,7 @@ var Sequencer = Backbone.View.extend({
 
   initialize: function() {
     this.channels = [];
-    this.addChannels(1);
+    this.addChannel();
     this.currentBeat = 0;
     this.beatDuration = 200;
     this.testInitChannels();
@@ -54,9 +54,15 @@ var Sequencer = Backbone.View.extend({
     }
   },
 
-  addChannels: function(n) {
+  addChannel: function(n) {
+    if (typeof n == 'undefined')
+      var n = 1;
+    var len = this.channels.length;
     for (var i=0; i < n; i++)
       this.channels.push(new Channel());
+    if (n == 1)
+      return _.last(this.channels);
+    return this.channels.slice(len);
   },
 
   actionPause: function(event) {
@@ -74,8 +80,8 @@ var Sequencer = Backbone.View.extend({
   },
 
   actionAddChannel: function(event) {
-    this.addChannels(1);
-    this.render();
+    var channel = this.addChannel();
+    channel.render().$el.insertAfter($('.channel', this.el).last());
   },
 
   play: function() {
