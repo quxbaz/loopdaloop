@@ -1,5 +1,5 @@
 /*
-  Loop class. Plays a looped sequence of sounds.
+  Loop class. Plays a sequence of blips.
 */
 
 var _ = require('underscore');
@@ -7,17 +7,21 @@ var Blip = require('./blip');
 
 function Loop(opts) {
   var defaults = {
-    // repeat: false
+    sampleName: ''
   };
   _.extend(this, defaults, opts);
   this.blips = [];
+  _.times(16, this.addBlip.bind(this));
 }
 
 var fn = Loop.prototype;
 
-fn.add = function(blip) {
-  this.blips.push(blip);
-  return this;
+fn.addBlip = function() {
+  this.blips.push(new Blip({
+    sampleName: this.sampleName,
+    mute: true
+  }));
+  return _.last(this.blips);
 };
 
 // fn.play = function() {

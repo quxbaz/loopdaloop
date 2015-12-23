@@ -4,7 +4,7 @@ function Blip(opts) {
   this.am = app.am;
   this.context = this.am.context;
   var defaults = {
-    sampleName: 'hihat',
+    sampleName: '',
     duration: 200,
     offset: 0,
     gain: 1,
@@ -13,8 +13,18 @@ function Blip(opts) {
   _.extend(this, defaults, opts);
 }
 
-Blip.prototype.play = function() {
-  if (this.mute)
+var fn = Blip.prototype;
+
+fn.isMute = function() {
+  return this.mute || this.sampleName == '';
+};
+
+fn.toggleMute = function() {
+  this.mute = !this.mute;
+};
+
+fn.play = function() {
+  if (this.isMute())
     return this;
 
   var that = this;

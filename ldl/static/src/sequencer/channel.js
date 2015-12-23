@@ -9,7 +9,7 @@ var Channel = Backbone.View.extend({
   template: util.makeTemplate('channel'),
 
   defaults: {
-    sampleName: 'hihat'
+    sampleName: ''
   },
 
   initialize: function(opts) {

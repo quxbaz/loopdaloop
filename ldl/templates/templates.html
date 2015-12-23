@@ -11,7 +11,7 @@
       <div>
         <h4>Add a channel</h4>
         <div>
-          {{#each sampleIds}}
+          {{#each sampleNames}}
             <a class="sample-option" data-sample="{{this}}" href="">{{this}}</a>
           {{/each}}
         </div>
@@ -24,7 +24,7 @@
 <script type="text/x-handlebars-template" id="channel-template">
   <div class="cells">
     {{#times 16}}
-      <div class="cell"></div>
+      <div class="cell" data-index="{{@index}}"></div>
     {{/times}}
   </div>
 </div>
