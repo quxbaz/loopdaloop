@@ -18,11 +18,11 @@
     "test",
     "tests"
   ],
-  "_release": "46a7bc2f69",
+  "_release": "3bb6afa20b",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "46a7bc2f69551a63ee674924ac089b814acceca1"
+    "commit": "3bb6afa20b73f4e07f22f124b4f01a1dc8c717dc"
   },
   "_source": "https://github.com/quxbaz/timer.js.git",
   "_target": "*",
