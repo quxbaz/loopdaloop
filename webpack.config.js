@@ -2,7 +2,7 @@ require('es6-promise').polyfill();
 var path = require('path');
 
 module.exports = {
-  devtool: 'source-map',
+  // devtool: 'source-map',
   entry: './ldl/static/entry.js',
   output: {
     path: path.join(__dirname, 'ldl/static/build'),
