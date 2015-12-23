@@ -63,8 +63,9 @@ var Sequencer = Backbone.View.extend({
     ];
     for (var i=0; i < samples.length; i++) {
       for (var n=0; n < 16; n++) {
-        // this.channels[i].loop.add(new Blip(samples[i][n % 4], {duration: this.beatDuration}));
-        this.channels[i].loop.add(new Blip(samples[i][n], {duration: this.beatDuration}));
+        this.channels[i].loop.add(
+          new Blip({sampleName: samples[i][n], duration: this.beatDuration})
+        );
       }
     }
   },
@@ -86,7 +87,7 @@ var Sequencer = Backbone.View.extend({
   actionAddChannel: function(event) {
     event.preventDefault();
     this.addChannel({
-      sampleId: $(event.currentTarget).data('sample')
+      sampleName: $(event.currentTarget).data('sample')
     }).render()
       .$el.insertAfter($('.channel', this.el).last());
   },
@@ -104,7 +105,7 @@ var Sequencer = Backbone.View.extend({
 
   templateData: function() {
     return {
-      sampleIds: app.am.sampleIds,
+      sampleNames: app.am.sampleNames,
       channels: this.channels
     };
   }

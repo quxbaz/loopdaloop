@@ -5,12 +5,11 @@
 var _ = require('underscore');
 var Blip = require('./blip');
 
-function Loop(sampleId, opts) {
+function Loop(opts) {
   var defaults = {
     // repeat: false
   };
   _.extend(this, defaults, opts);
-  this.sampleId = sampleId;
   this.blips = [];
 }
 

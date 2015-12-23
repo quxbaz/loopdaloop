@@ -1,21 +1,16 @@
 var _ = require('underscore');
 
-function Blip(sampleId, opts) {
-  /*
-    A single sound.
-  */
+function Blip(opts) {
   this.am = app.am;
   this.context = this.am.context;
-  this.sampleId = sampleId;
   var defaults = {
+    sampleName: 'hihat',
     duration: 200,
     offset: 0,
     gain: 1,
     mute: false
   };
   _.extend(this, defaults, opts);
-  if (this.sampleId == '')
-    this.mute = true;
 }
 
 Blip.prototype.play = function() {
@@ -24,7 +19,7 @@ Blip.prototype.play = function() {
 
   var that = this;
   var source = this.context.createBufferSource();
-  source.buffer = this.am.getSampleBuffer(this.sampleId);
+  source.buffer = this.am.getSampleBuffer(this.sampleName);
   var defaultGainValue = this.context.createGain().gain.value;
   if (this.gain != defaultGainValue) {
     var gainNode = this.context.createGain();

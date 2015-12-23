@@ -9,13 +9,13 @@ var Channel = Backbone.View.extend({
   template: util.makeTemplate('channel'),
 
   defaults: {
-    sampleId: 'snare'
+    sampleName: 'hihat'
   },
 
   initialize: function(opts) {
-    _.extend(this, opts, this.defaults);
+    _.extend(this, this.defaults, opts);
     // <TODO> Construct properly
-    this.loop = new Loop({sampleId: this.sampleId});
+    this.loop = new Loop({sampleName: this.sampleName});
   },
 
   play: function() {
