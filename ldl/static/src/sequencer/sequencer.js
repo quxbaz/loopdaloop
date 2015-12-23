@@ -11,9 +11,9 @@ var Sequencer = Backbone.View.extend({
   template: util.makeTemplate('sequencer'),
 
   events: {
-    'click .pause'       : 'actionPause',
-    'click .play'        : 'actionPlay',
-    'click .add-channel' : 'actionAddChannel'
+    'click .pause'         : 'actionPause',
+    'click .play'          : 'actionPlay',
+    'click .sample-option' : 'actionAddChannel'
   },
 
   initialize: function() {
@@ -22,6 +22,7 @@ var Sequencer = Backbone.View.extend({
     this.currentBeat = 0;
     this.beatDuration = 200;
     this.addChannel();
+
     this.testInitChannels();
 
     this.timer = new Timer({tickInterval: this.beatDuration})
@@ -29,6 +30,13 @@ var Sequencer = Backbone.View.extend({
         if (this.playing)
           this.playBeat();
       }.bind(this)).start();
+  },
+
+  addChannel: function(opts) {
+    if (typeof opts == 'undefined')
+      opts = {};
+    this.channels.push(new Channel(opts));
+    return _.last(this.channels);
   },
 
   testInitChannels: function() {
@@ -61,17 +69,6 @@ var Sequencer = Backbone.View.extend({
     }
   },
 
-  addChannel: function(n) {
-    if (typeof n == 'undefined')
-      var n = 1;
-    var len = this.channels.length;
-    for (var i=0; i < n; i++)
-      this.channels.push(new Channel());
-    if (n == 1)
-      return _.last(this.channels);
-    return this.channels.slice(len);
-  },
-
   actionPause: function(event) {
     event.preventDefault();
     this.playing = false;
@@ -87,8 +84,11 @@ var Sequencer = Backbone.View.extend({
   },
 
   actionAddChannel: function(event) {
-    var channel = this.addChannel();
-    channel.render().$el.insertAfter($('.channel', this.el).last());
+    event.preventDefault();
+    this.addChannel({
+      sampleId: $(event.currentTarget).data('sample')
+    }).render()
+      .$el.insertAfter($('.channel', this.el).last());
   },
 
   playBeat: function() {
@@ -104,6 +104,7 @@ var Sequencer = Backbone.View.extend({
 
   templateData: function() {
     return {
+      sampleIds: app.am.sampleIds,
       channels: this.channels
     };
   }

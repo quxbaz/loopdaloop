@@ -53,6 +53,12 @@ body {
   justify-content: center;
 }
 
+.center-column() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .channels {
   .flow-content;
   width: @channelContainerWidth;
@@ -98,11 +104,15 @@ body {
 .add-channel {
   .channel;
   > div:first-child {
-    .center-content;
+    .center-column;
     width: @innerChannelLength;
     height: @innerChannelLength;
     cursor: pointer;
     .border;
+    text-align: center;
+    h4 {
+      margin: 0;
+    }
   }
 }
 
