@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
+var Timer = require('timer').Timer;
 var util = require('util');
 var Channel = require('./channel');
 
@@ -17,11 +18,17 @@ var Sequencer = Backbone.View.extend({
 
   initialize: function() {
     this.channels = [];
-    this.addChannel();
+    this.playing = false;
     this.currentBeat = 0;
     this.beatDuration = 200;
+    this.addChannel();
     this.testInitChannels();
-    // _.delay(this.play.bind(this), 100);
+
+    this.timer = new Timer({tickInterval: this.beatDuration})
+      .on('tick', function() {
+        if (this.playing)
+          this.playBeat();
+      }.bind(this)).start();
   },
 
   testInitChannels: function() {
@@ -67,14 +74,14 @@ var Sequencer = Backbone.View.extend({
 
   actionPause: function(event) {
     event.preventDefault();
-    clearInterval(this.testPlayId);
+    this.playing = false;
     $(event.currentTarget).addClass('hide');
     $('.play').removeClass('hide');
   },
 
   actionPlay: function(event) {
     event.preventDefault();
-    this.play();
+    this.playing = true;
     $(event.currentTarget).addClass('hide');
     $('.pause').removeClass('hide');
   },
@@ -84,17 +91,15 @@ var Sequencer = Backbone.View.extend({
     channel.render().$el.insertAfter($('.channel', this.el).last());
   },
 
-  play: function() {
+  playBeat: function() {
     var that = this;
-    this.testPlayId = setInterval(function() {
-      var beat = that.currentBeat;
-      $('.cell').removeClass('playing');
-      $('.cells').each(function(i) {
-        that.channels[i].loop.playBlip(beat);
-        $('.cell', this).eq(beat).addClass('playing');
-      });
-      that.currentBeat = (beat + 1) % 16;
-    }, this.beatDuration);
+    var beat = this.currentBeat;
+    $('.cell').removeClass('playing');
+    $('.cells').each(function(i) {
+      that.channels[i].loop.playBlip(beat);
+      $('.cell', this).eq(beat).addClass('playing');
+    });
+    this.currentBeat = (beat + 1) % 16;
   },
 
   templateData: function() {
