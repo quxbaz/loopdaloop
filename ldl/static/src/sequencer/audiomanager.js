@@ -13,7 +13,7 @@ function AudioManager(context) {
   if (typeof context == 'undefined')
     throw Error('AudioManager must be instantiated with an AudioContext object.')
   this.context = context;
-  this.sampleIds = SAMPLE_IDS;
+  this.sampleIds = _.clone(SAMPLE_IDS);
   this.samples = {};
 }
 
