@@ -25,6 +25,7 @@ module.exports = {
       'http'        : 'lib/http.js/http.js',
       'render'      : 'lib/render.js/render.js',
       'bind'        : 'lib/bind.js/bind.js',
+      'timer'       : 'lib/timer.js/timer.js',
       'util'        : 'util.js'
     }
   }
