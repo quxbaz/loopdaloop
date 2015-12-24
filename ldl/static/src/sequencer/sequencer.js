@@ -21,7 +21,6 @@ var Sequencer = Backbone.View.extend({
     this.playing = false;
     this.currentBeat = 0;
     this.beatDuration = 200;
-    this.addChannel();
 
     this.timer = new Timer({tickInterval: this.beatDuration})
       .on('tick', function() {
@@ -57,7 +56,7 @@ var Sequencer = Backbone.View.extend({
     this.addChannel({
       sampleName: $(event.currentTarget).data('sample')
     }).render()
-      .$el.insertAfter($('.channel', this.el).last());
+      .$el.insertBefore($('.add-channel', this.el));
   },
 
   playBeat: function() {
