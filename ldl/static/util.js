@@ -18,6 +18,10 @@ function makeTemplate(name) {
 
 // <todo>
 // function requireArg(object, propStr, errorMessage) {}
+// OR
+// function requireOpts(object, [props])
+//   for prop in props:
+//     error: prop is required
 
 module.exports = {
   fmt: fmt,

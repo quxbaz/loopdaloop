@@ -2,11 +2,16 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 var util = require('util');
 var Loop = require('./loop');
+var Cell = require('./cell');
 
 var Channel = Backbone.View.extend({
 
   className: 'channel',
   template: util.makeTemplate('channel'),
+
+  events: {
+    'cellClick': 'actionToggleCell'
+  },
 
   defaults: {
     sampleName: ''
@@ -14,12 +19,22 @@ var Channel = Backbone.View.extend({
 
   initialize: function(opts) {
     _.extend(this, this.defaults, opts);
-    // <TODO> Construct properly
     this.loop = new Loop({sampleName: this.sampleName});
+    this.cells = _.times(16, function(i) {
+      return new Cell({
+        blip: this.loop.blips[i]
+      });
+    }.bind(this));
   },
 
-  play: function() {
-    this.loop.play();
+  templateData: function() {
+    return {
+      cells: this.cells
+    }
+  },
+
+  actionToggleCell: function(event, cell) {
+    cell.blip.toggleMute();
   }
 
 });

@@ -13,8 +13,7 @@ var Sequencer = Backbone.View.extend({
   events: {
     'click .pause'         : 'actionPause',
     'click .play'          : 'actionPlay',
-    'click .sample-option' : 'actionAddChannel',
-    'click .cell'          : 'actionToggleBlip'
+    'click .sample-option' : 'actionAddChannel'
   },
 
   initialize: function() {
@@ -24,13 +23,12 @@ var Sequencer = Backbone.View.extend({
     this.beatDuration = 200;
     this.addChannel();
 
-    // this.testInitChannels();
-
     this.timer = new Timer({tickInterval: this.beatDuration})
       .on('tick', function() {
         if (this.playing)
           this.playBeat();
       }.bind(this)).start();
+
   },
 
   addChannel: function(opts) {
@@ -38,23 +36,6 @@ var Sequencer = Backbone.View.extend({
       opts = {};
     this.channels.push(new Channel(opts));
     return _.last(this.channels);
-  },
-
-  testInitChannels: function() {
-    var Blip = require('./blip');
-    var samples = [[
-      'kick', 'clap', 'snare', 'clap',
-      'kick', 'clap', 'snare', 'clap',
-      'kick', 'clap', 'snare', 'clap',
-      'kick', 'hihat', 'hihat', 'snare'
-    ]];
-    for (var i=0; i < samples.length; i++) {
-      for (var n=0; n < 16; n++) {
-        var blip = this.channels[i].loop.blips[n];
-        blip.sampleName = samples[i][n];
-        blip.mute = false;
-      }
-    }
   },
 
   actionPause: function(event) {
@@ -77,14 +58,6 @@ var Sequencer = Backbone.View.extend({
       sampleName: $(event.currentTarget).data('sample')
     }).render()
       .$el.insertAfter($('.channel', this.el).last());
-  },
-
-  actionToggleBlip: function(event) {
-    var $cell = $(event.currentTarget);
-    var channel = this.channels[
-      $cell.closest('.channel').index()
-    ];
-    channel.loop.blips[$cell.data('index')].toggleMute();
   },
 
   playBeat: function() {
