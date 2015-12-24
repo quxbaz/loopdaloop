@@ -11,7 +11,7 @@ var Cell = Backbone.View.extend({
   template: util.makeTemplate('cell'),
 
   events: {
-    'mousedown' : 'cellClick'
+    'mousedown' : 'actionToggleMute'
   },
 
   initialize: function(opts) {
@@ -19,11 +19,13 @@ var Cell = Backbone.View.extend({
     this.blip = opts.blip;
   },
 
-  cellClick: function(event) {
-    this.$el.trigger('cellClick', this);
+  actionToggleMute: function(event) {
+    this.blip.toggleMute();
 
     // <TODO> Bind this render to the template
     this.render();
+
+    this.$el.toggleClass('muted', this.blip.muted);
   },
 
   templateData: function() {

@@ -9,9 +9,7 @@ var Channel = Backbone.View.extend({
   className: 'channel',
   template: util.makeTemplate('channel'),
 
-  events: {
-    'cellClick': 'actionToggleCell'
-  },
+  events: {},
 
   defaults: {
     sampleName: ''
@@ -31,10 +29,6 @@ var Channel = Backbone.View.extend({
     return {
       cells: this.cells
     }
-  },
-
-  actionToggleCell: function(event, cell) {
-    cell.blip.toggleMute();
   }
 
 });
