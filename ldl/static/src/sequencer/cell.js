@@ -21,10 +21,7 @@ var Cell = Backbone.View.extend({
 
   actionToggleMute: function(event) {
     this.blip.toggleMute();
-
-    // <TODO> Bind this render to the template
     this.render();
-
     this.$el.toggleClass('muted', this.blip.muted);
   },
 
