@@ -36,15 +36,15 @@ body {
   margin: 80px auto 0 auto;
 }
 
-@channelLength: 220px;
-@innerChannelLength: 180px;
+@channelsPerRow: 4;
+@channelRowWidth: 760px;
+@channelLength: @channelRowWidth / @channelsPerRow;
+@innerChannelLength: @channelLength * 0.8;
 @cellLength: @innerChannelLength / 4;
-@channelContainerWidth: (@channelLength * 3);
 
 .flow-content() {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
 }
 
 .center-content() {
@@ -61,7 +61,7 @@ body {
 
 .channels {
   .flow-content;
-  width: @channelContainerWidth;
+  width: @channelRowWidth;
   margin: 0 auto;
 }
 
@@ -69,13 +69,6 @@ body {
   .center-content;
   width: @channelLength;
   height: @channelLength;
-  border: 1px solid #fdd;
-  &:not(:nth-child(3n + 1)) {
-    border-left: none;
-  }
-  &:nth-child(n + 4) {
-    border-top: none;
-  }
 }
 
 .cells {
@@ -85,10 +78,11 @@ body {
 }
 
 .cell {
+  .center-content;
   position: relative;
   width: @cellLength;
   height: @cellLength;
-  .center-content;
+  cursor: pointer;
   .border;
   &:not(:nth-child(4n + 1)) {
     border-left: none;
@@ -99,6 +93,9 @@ body {
   &.playing {
     .bg(#fdd) !important;
   }
+  &.muted {
+    .bg(#fffd31);
+  }
 }
 
 .add-channel {
@@ -107,7 +104,6 @@ body {
     .center-column;
     width: @innerChannelLength;
     height: @innerChannelLength;
-    cursor: pointer;
     .border;
     text-align: center;
     h4 {
