@@ -16,6 +16,9 @@ function makeTemplate(name) {
   return Handlebars.compile($template.html());
 }
 
+// <todo>
+// function requireArg(object, propStr, errorMessage) {}
+
 module.exports = {
   fmt: fmt,
   makeTemplate: makeTemplate
