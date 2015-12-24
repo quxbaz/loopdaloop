@@ -15,6 +15,7 @@ var Cell = Backbone.View.extend({
   },
 
   initialize: function(opts) {
+    util.requireProps(opts, ['blip']);
     this.blip = opts.blip;
   },
 

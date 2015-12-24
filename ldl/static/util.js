@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var _ = require('underscore');
 var Handlebars = require('handlebars');
 
 function fmt(format) {
@@ -16,14 +17,15 @@ function makeTemplate(name) {
   return Handlebars.compile($template.html());
 }
 
-// <todo>
-// function requireArg(object, propStr, errorMessage) {}
-// OR
-// function requireOpts(object, [props])
-//   for prop in props:
-//     error: prop is required
+function requireProps(object, props) {
+  _.each(props, function(prop) {
+    if (!_.has(object, prop))
+      throw new Error('Property @' + prop + ' is required.');
+  });
+}
 
 module.exports = {
   fmt: fmt,
-  makeTemplate: makeTemplate
+  makeTemplate: makeTemplate,
+  requireProps: requireProps
 };
