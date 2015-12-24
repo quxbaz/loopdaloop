@@ -11,7 +11,7 @@ var Cell = Backbone.View.extend({
   template: util.makeTemplate('cell'),
 
   events: {
-    'click' : 'cellClick'
+    'mousedown' : 'cellClick'
   },
 
   initialize: function(opts) {
@@ -21,6 +21,13 @@ var Cell = Backbone.View.extend({
 
   cellClick: function(event) {
     this.$el.trigger('cellClick', this);
+
+    // <TODO> Bind this render to the template
+    this.render();
+  },
+
+  templateData: function() {
+    return this.blip;
   }
 
 });
