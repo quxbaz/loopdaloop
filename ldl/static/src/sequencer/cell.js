@@ -11,7 +11,7 @@ var Cell = Backbone.View.extend({
   template: util.makeTemplate('cell'),
 
   events: {
-    'mousedown' : 'actionToggleMute'
+    'click' : 'actionToggleMute'
   },
 
   initialize: function(opts) {
