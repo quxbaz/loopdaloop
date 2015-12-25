@@ -27,6 +27,7 @@ var Channel = Backbone.View.extend({
 
   templateData: function() {
     return {
+      sampleName: this.sampleName,
       cells: this.cells
     }
   }
