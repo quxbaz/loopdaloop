@@ -13,7 +13,8 @@ var Sequencer = Backbone.View.extend({
   events: {
     'click .pause'         : 'actionPause',
     'click .play'          : 'actionPlay',
-    'click .sample-option' : 'actionAddChannel'
+    'click .sample-option' : 'actionAddChannel',
+    'clickChannelTitle'    : 'actionOpenControlPanel'
   },
 
   initialize: function() {
@@ -57,6 +58,10 @@ var Sequencer = Backbone.View.extend({
       sampleName: $(event.currentTarget).data('sample')
     }).render()
       .$el.insertBefore($('.add-channel', this.el));
+  },
+
+  actionOpenControlPanel: function(event, channel) {
+    console.log('open');
   },
 
   playBeat: function() {

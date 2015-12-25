@@ -9,7 +9,9 @@ var Channel = Backbone.View.extend({
   className: 'channel',
   template: util.makeTemplate('channel'),
 
-  events: {},
+  events: {
+    'click .channel-title': 'actionClickChannelTitle'
+  },
 
   defaults: {
     sampleName: ''
@@ -30,6 +32,10 @@ var Channel = Backbone.View.extend({
       sampleName: this.sampleName,
       cells: this.cells
     }
+  },
+
+  actionClickChannelTitle: function(event) {
+    this.$el.trigger('clickChannelTitle', this);
   }
 
 });

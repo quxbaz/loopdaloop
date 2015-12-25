@@ -22,7 +22,7 @@
 </script>
 
 <script type="text/x-handlebars-template" id="channel-template">
-  <div>{{sampleName}}</div>
+  <div class="channel-title">{{sampleName}}</div>
   <div class="cells">
     {{#each cells}}
       {{render this}}
@@ -36,6 +36,10 @@
     <div class="pitch-scale">_</div>
     <div class="pitch-label hide">N/A</div>
   {{/unless}}
+</script>
+
+<script type="text/x-handlebars-template" id="control-panel-template">
+  this is the control panel
 </script>
 
 {% endraw %}
