@@ -84,6 +84,7 @@ body {
   width: @cellLength;
   height: @cellLength;
   cursor: pointer;
+  .bg(#fffd31);
   .border;
   &:not(:nth-child(4n + 1)) {
     border-left: none;
@@ -95,7 +96,12 @@ body {
     .bg(#fdd) !important;
   }
   &.muted {
-    .bg(#fffd31);
+    .bg(none);
+  }
+  .pitch-scale {
+    position: absolute;
+    left: 4px;
+    font-weight: bold;
   }
 }
 

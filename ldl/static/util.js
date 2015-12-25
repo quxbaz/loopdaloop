@@ -24,8 +24,13 @@ function requireProps(object, props) {
   });
 }
 
+function constrain(val, minmax) {
+  return Math.min(Math.max(val, minmax[0]), minmax[1]);
+}
+
 module.exports = {
-  fmt: fmt,
-  makeTemplate: makeTemplate,
-  requireProps: requireProps
+  fmt          : fmt,
+  makeTemplate : makeTemplate,
+  requireProps : requireProps,
+  constrain    : constrain
 };
