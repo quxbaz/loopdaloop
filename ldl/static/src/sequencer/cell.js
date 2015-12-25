@@ -13,8 +13,8 @@ var Cell = Backbone.View.extend({
   template: util.makeTemplate('cell'),
 
   events: {
-    'click' : 'actionToggleMute',
-    'wheel' : 'actionAdjustPitch'
+    'mousedown' : 'actionToggleMute',
+    'wheel'     : 'actionAdjustPitch'
   },
 
   initialize: function(opts) {
