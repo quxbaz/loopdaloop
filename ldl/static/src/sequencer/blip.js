@@ -4,11 +4,12 @@ function Blip(opts) {
   this.am = app.am;
   this.context = this.am.context;
   var defaults = {
-    sampleName: '',
-    duration: 200,
-    offset: 0,
-    gain: 1,
-    mute: false
+    sampleName   : '',
+    mute         : false,
+    duration     : 200,
+    offset       : 0,
+    gain         : 1,
+    playbackRate : 1
   };
   _.extend(this, defaults, opts);
 }
@@ -24,12 +25,13 @@ fn.toggleMute = function() {
 };
 
 fn.play = function() {
+
   if (this.isMute())
     return this;
 
-  var that = this;
   var source = this.context.createBufferSource();
   source.buffer = this.am.getSampleBuffer(this.sampleName);
+  source.playbackRate.value = this.playbackRate;
   var defaultGainValue = this.context.createGain().gain.value;
   if (this.gain != defaultGainValue) {
     var gainNode = this.context.createGain();
@@ -40,12 +42,14 @@ fn.play = function() {
   source.connect(this.context.destination);
   source.start(this.context.currentTime + this.offset / 1000);
 
+  var duration = this.duration;
   // Returns a promise that resolves when the blip is done playing.
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       resolve(this);
-    }, that.duration);
+    }, duration);
   });
+
 };
 
 module.exports = Blip;
