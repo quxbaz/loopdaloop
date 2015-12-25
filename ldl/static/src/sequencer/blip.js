@@ -52,4 +52,13 @@ fn.play = function() {
 
 };
 
+fn.getPitchScale = function() {
+  /*
+    Gets a value between 0 and 1.0 indicating the value of
+    playbackRate along it's min/max values.
+  */
+  var min = 0.05, max = 4.0;
+  return (this.playbackRate - min) / (max - min);
+};
+
 module.exports = Blip;

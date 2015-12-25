@@ -42,12 +42,14 @@ var Cell = Backbone.View.extend({
       this.blip.playbackRate -= 0.1;
     this.blip.playbackRate = util.constrain(this.blip.playbackRate, [0.05, 4]);
     this.renderPitchScale();
+    var label = Math.floor(this.blip.getPitchScale() * 100);
+    $('.pitch-label', this.el).text(label)
+      .stop(true, true).show().delay(2000).fadeOut(500);
   },
 
   renderPitchScale: function() {
     var min = 0.05, max = 4.0;
-    var scale = (this.blip.playbackRate - min) / (max - min);
-    var offset = (scale * 0.8 + 0.07) * 100;
+    var offset = (this.blip.getPitchScale() * 0.8 + 0.07) * 100;
     $('.pitch-scale', this.el).css('bottom', offset + '%');
   },
 
