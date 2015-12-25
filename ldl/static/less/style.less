@@ -79,11 +79,12 @@ body {
 }
 
 .cell {
+  -webkit-user-select: none;
+  cursor: pointer;
   .center-content;
   position: relative;
   width: @cellLength;
   height: @cellLength;
-  cursor: pointer;
   .bg(#fffd31);
   .border;
   &:not(:nth-child(4n + 1)) {
