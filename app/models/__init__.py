@@ -1,6 +1,6 @@
 from uuid import uuid4
 from sqlalchemy import Column, String
-from ldl.db import Base
+from app.db import Base
 
 def uniq_id():
   return str(uuid4())

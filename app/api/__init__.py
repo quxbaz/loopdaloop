@@ -1,8 +1,8 @@
 import json, uuid
 from flask import Blueprint, request, render_template
 from flask.ext.restful import Api, Resource
-from ldl import models
-from ldl import db
+from app import models
+from app import db
 
 blueprint = Blueprint(__name__, __name__)
 rest = Api(blueprint)

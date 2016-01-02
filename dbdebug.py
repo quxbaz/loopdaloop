@@ -1,6 +1,6 @@
 # Use this by doing
 #   from dbdebug import *
 
-from ldl import db, models
+from app import db, models
 
 s = db.session

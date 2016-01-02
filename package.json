@@ -2,7 +2,7 @@
   "name": "loopdaloop",
   "version": "0.0.0",
   "description": "Musical sequencer for making beats.",
-  "main": "ldl/static/entry.js",
+  "main": "app/static/entry.js",
   "dependencies": {
     "less": "~2.5.3",
     "style-loader": "~0.13.0",
