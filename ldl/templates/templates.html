@@ -34,12 +34,14 @@
 <script type="text/x-handlebars-template" id="cell-template">
   {{#unless mute}}
     <div class="pitch-scale">_</div>
-    <div class="pitch-label hide">N/A</div>
+    <div class="pitch-label"></div>
+    <div class="gain-label"></div>
   {{/unless}}
 </script>
 
 <script type="text/x-handlebars-template" id="control-panel-template">
-  this is the control panel
+  <a class="close" href="">Close</a>
+  <div class="react-button-group"></div>
 </script>
 
 {% endraw %}

@@ -4,6 +4,7 @@ var Backbone = require('backbone');
 var Timer = require('timer').Timer;
 var util = require('util');
 var Channel = require('./channel');
+var ControlPanel = require('./controlpanel');
 
 var Sequencer = Backbone.View.extend({
 
@@ -61,7 +62,8 @@ var Sequencer = Backbone.View.extend({
   },
 
   actionOpenControlPanel: function(event, channel) {
-    console.log('open');
+    var controls = new ControlPanel({channel: channel});
+    controls.render().$el.appendTo('body');
   },
 
   playBeat: function() {
